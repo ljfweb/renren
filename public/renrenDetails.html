@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0; padding: 0;}
+			.content{
+				width: 100%;
+				height: 500px;
+				
+			}
+			.con_left{
+				width: 35%;
+				float: left;
+				height: 400px;
+				background: skyblue;
+				margin-right: 5%;
+			}
+			.con_left img{
+				width: 100%;
+				height: 400px;
+			}
+			.con_right{
+				width: 60%;
+				float: left;
+				height: 400px;
+				background: salmon;
+			}
+			.size{
+				overflow: hidden;
+			}
+			.size span{
+				width: 50px;
+				height: 50px;
+				line-height: 50px;
+				background: skyblue;
+				margin-left: 30px;
+				text-align: center;
+				float: left;
+			}
+			.size .active{
+				border: 2px solid red;
+			}
+			.loginMask{
+				width: 99vw;
+				height: 100vh;
+				background: rgba(0,0,0,0.5);
+				position: fixed;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			iframe{
+				position: absolute;
+				left: 50%;
+				margin-left: -150px;
+				top:50px;
+				background: skyblue;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>详情页</h1>
+		<div class="content">
+			<div class="con_left">
+				<img src="images/2.png"/>
+			</div>
+			<div class="con_right">
+				<h2 class="pname">名字: <span></span> 	</h2>
+				<h3 class="price">价格: <span></span> </h3>
+				<h4 class="size">尺码: <div></div> </h4>
+				<div class="color">
+					颜色:<span></span>
+				</div>
+				<div class="kucun">
+					库存:<span>库存</span>
+				</div>
+				<button class="sureBuy">购买商品</button>
+			</div>
+			
+		</div>
+		<div class="info">
+			<img src=""/>
+		</div>
+		<!--登录遮罩-->
+		<div class="loginMask">
+			
+			
+		
+			
+		</div>
+		
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="javascripts/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="javascripts/details.js" type="text/javascript" charset="utf-8"></script>
+</html>

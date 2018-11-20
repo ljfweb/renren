@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+			*{margin: 0; padding: 0;}
+			/*vw   ---view  width---视口宽度 
+			 * vh  ---view   height --视口高度   */
+			#passMask{
+				width: 99vw;
+				height: 100vh;
+				background: rgba(0,0,0,0.5);
+				position: fixed;
+				display: none;
+			}
+			#passMask .content{
+				width: 400px;
+				height: 300px;
+				margin: 40px auto;
+				background: skyblue;
+			}
+			.close{
+				font-size: 30px;
+				color: red;
+				cursor: pointer;
+			}
+			#infoMask{
+				width: 99vw;
+				height: 100vh;
+				background: rgba(0,0,0,0.5);
+				position: fixed;
+				display: none;
+			}
+			#infoMask .infoContent{
+					width: 400px;
+				height: 200px;
+				margin: 40px auto;
+				background: skyblue;
+				
+			}
+				#infoMask  .editInfo{
+					width: 400px;
+					height: 200px;
+					margin: 40px auto;
+					background: salmon;
+					display: none;
+				}
+				.addPro{
+					width: 600px;
+					height: 400px;
+					background: skyblue;
+					
+					position: absolute;
+					top: 0;
+					left: 50%;
+					margin-left: -300px;
+				}
+				.addmask{
+					width: 99vw;
+					height: 100vh;
+					background: rgba(0,0,0,0.5);
+					position: fixed;
+					display: none;
+					top: 0;
+				}
+				table td img{
+					width: 100px;
+					height: 100px;
+				}
+				table td {
+					width: 100px;
+					text-align: center;
+				}
+		</style>
+	</head>
+	<body>
+		<h1>卖家管理系统</h1>
+		<!--修改密码***************************88-->
+		<div id="passMask">
+			<div class="content">
+				<h2>修改密码   <span class="close">×</span></h2>
+				用户名：<input type="text"  id="userP"  />
+				<br />
+				原密码：<input type="text"  id="oldpass"  />
+				<br />
+				新密码：<input type="text"   id="newpass"  />
+				<br />
+				确认密码：<input type="text"  id="renewpass"  />
+				<br />
+				
+				<button id="sureUp">确认修改</button>
+			</div>
+		</div>
+		<!--个人信息遮罩-->
+		<div id="infoMask">
+			<div class="infoContent">
+				用户名：<span></span>
+				<br />
+				手机号：<span></span>
+				<br />
+				真实姓名:  <span></span>
+				<br />
+				注册时间：<span></span>
+				<br />
+				权限: 	<span>会员</span>
+				<button id="edit">编辑</button>
+			</div>
+			<div class="editInfo">
+				用户名: <input type="text" readonly value="dhhh" id="euser"  />
+				<br />
+				手机号 ：<input type="text" id="ephone"  />
+				<br />
+				真实姓名：<input type="text" id="ename" />
+				<br />
+				注册时间：	<input type="text" id="edate" readonly />
+				<br />
+				会员：<select  id="epower">
+							<option value="会员">会员</option>
+							<option value="非会员">非会员</option>
+				</select>
+				<button id="save">保存</button>
+			</div>
+		</div>
+		
+		
+		
+		
+		<div><button class="updatePass">修改密码</button>  <button class="seeUser">查看用户信息 </button></div>
+	
+		<div>管理系统    ：  <button id="quit">退出系统</button></div>
+		主页
+		<button class="add">添加商品 </button>
+	<div class="addmask" >
+		<div class="addPro" >
+		
+			名称：<input type="text" id="addname"  />
+			<br />
+			价格：<input type="text" id="addpirce"  />
+			<br />
+			主图：<input type="text" id="addimg" />
+			<br />
+			分类：<select  id="fenlei" >
+				<option value="跑车">跑车</option>
+				<option value="轿车">轿车</option>
+				<option value="suv">suv</option>
+			</select>
+			<br />
+			颜色：<input type="color" id="addcolor" />
+			<br />
+			<div class="addsize">
+			尺码：<input type="checkbox"  /><span>A级</span><input type="checkbox" /><span>B级</span><input type="checkbox" /><span>C级</span>
+			</div>
+			<br />
+			库存：<input type="number" id="kucun" />
+			<br />
+			功率：<input type="text" id="gonglv" />
+			<br />
+			大图：<input type="text" id="bigimg" />
+			<button class="sureAdd">确认添加</button><button class="addclose">关闭</button>
+		</div>
+	</div>
+		<!--卖家操作的列表***********************************-->
+		<div class="prolist">
+			<table border="1" >
+				<tr>
+					<th><input type="checkbox" />全选</th>
+					<th>图片</th>
+					<th>名字</th>
+					<th>价格</th>
+					<th>颜色</th>
+					<th>尺码</th>
+					<th>库存</th>
+					<th>操作</th>
+				</tr>
+				<!--<tr>
+					<td><input type="checkbox"  /></td>
+					<td><img src="images/1.png"/></td>
+					<td>奔驰</td>
+					<td>8888</td>
+					<td>红色</td>
+					<td>尺码</td>
+					<td>1888</td>
+					<td><button>编辑</button><button>删除</button></td>
+				</tr>-->
+			</table>
+
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="javascripts/indexuser.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			$(".addclose").click(function(){
+				$(".addmask").hide();
+			})
+				//添加商品按钮 
+			$(".add").click(function(){
+				$(".addmask").show();
+				$(".sureAdd").html("确认添加");
+				//清空输入框
+				$(".addPro input").val("");
+				$(".addsize input").removeAttr("checked");
+				
+				$(".sureAdd").attr("leixing","add");
+				$("#fenlei").removeAttr("disabled");
+				$("#gonglv").removeAttr("disabled");
+				$("#bigimg").removeAttr("disabled");
+			})
+			var epid='';
+			//编辑打开窗口
+			$("table").delegate(".editBtn","click",function(){
+				$(".addmask").show();
+				$(".sureAdd").html("确认修改");
+				$(".sureAdd").attr("leixing","edit");
+				var trList=$(this).parent().parent().children();
+				console.log(trList)
+				$("#addname").val(trList[2].innerHTML);
+				$("#addpirce").val(trList[3].innerHTML);
+				$("#addimg").val(trList[1].children[0].getAttribute("src").substr(7));
+				$("#kucun").val(Number(trList[6].innerHTML));
+				$("#addcolor").val(trList[4].innerHTML);
+				
+				//尺码
+				$.each( trList[5].innerHTML.split(","),function(index,eles){
+						
+					$.each($(".addsize span"), function(index,ele) {
+						if(eles==ele.innerHTML){
+							ele.previousElementSibling.checked=true;
+						}
+					});	
+					
+				})
+				$("#fenlei").attr("disabled","disabled");
+				$("#gonglv").attr("disabled","disabled");
+				$("#bigimg").attr("disabled","disabled");
+				//存储修改pid
+				epid=$(this).parent().parent().attr("pid");
+					
+			})
+			
+			//确认添加按钮或修改
+			$(".sureAdd").click(function(){
+				var btnAttr=$(this).attr("leixing");
+				
+				console.log(btnAttr)
+				var size=[];
+				$.each($(".addsize input"),function(index,ele){
+					if(ele.checked==true){
+						size.push(ele.nextElementSibling.innerHTML);
+					}
+					
+				})
+					console.log(size)	
+				//要发送的数据
+				
+				var obj={
+					pname:$("#addname").val(),
+					price:$("#addpirce").val(),
+					imgsrc:$("#addimg").val(),
+					fenlei:$("#fenlei").val(),
+					color:$("#addcolor").val(),
+					gonglv:$("#gonglv").val(),
+					kucun:$("#kucun").val(),
+					bigimg:$("#bigimg").val(),
+					size:JSON.stringify(size)
+					
+				}
+				if(btnAttr=="add"){
+					obj.action="add";
+				}
+				if(btnAttr=="edit"){
+					obj.action="edit";
+					obj.epid=epid;
+				}
+				
+				$.ajax({
+					url:"/product/addPro",
+					type:"post",
+					data:obj,
+					dataType:"json"
+				}).done(function(res){
+					if(res.success){
+						alert("添加成功");
+						loadProList();
+							//清空输入框
+						$(".addPro input").val("");
+						$(".addsize input").removeAttr("checked");		
+					}
+					if(res.editsuccess){
+						alert("修改成功");
+						$(".addPro input").val("");
+						$(".addsize input").removeAttr("checked");		
+						loadProList();
+					}
+					if(res.err){
+						alert(res.err);
+					}
+				})
+
+				
+				
+			})
+			//显示列表  
+			function loadProList(){
+				$.ajax({
+					type:"get",
+					url:"/product/proList",
+					async:true,
+					dataType:"json",
+					success:function(res){
+						
+						console.log(res);
+						var str="";
+						$.each(res,function(index,ele){
+							if(ele.pname!=""){
+								var size=JSON.parse(ele.size);
+								str+='<tr pid="'+ele.pid+'">'
+									+'<td><input type="checkbox"  /></td>'
+									+'<td><img src="images/'+ele.imgsrc+'"/></td>'
+									+'<td>'+ele.pname+'</td>'
+									+'<td>'+ele.price+'</td>'
+									+'<td>'+ele.color+'</td>'
+									+'<td>'+size+'</td>'
+									+'<td>'+ele.kucun+'</td>'
+									+'<td><button class="editBtn">编辑</button><button class="del">删除</button></td>'
+								+'</tr>'
+							
+							}
+							
+						})
+						$("table").append(str);
+						
+					}
+				})
+	
+			}
+			loadProList();
+			//删除操作
+			$("table").delegate(".del","click",function(){
+				var tr=$(this).parent().parent()
+				var pid=tr.attr("pid");
+				
+				$.ajax({
+					url:"/product/delPro",
+					data:{
+						pid:pid
+					},
+					dataType:"json",
+					type:"post",
+					success:function(res){
+						if(res.success){
+							alert("删除成功");
+							tr.remove();
+							tr=null;
+//							loadProList();
+						}
+						if(res.err){
+							alert(res.err);
+						}
+					}
+				})
+				
+				
+				
+			})
+			
+			
+			
+			
+	
+			
+		})
+		
+		
+		
+		
+	</script>
+</html>

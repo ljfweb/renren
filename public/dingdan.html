@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			td img{
+				width: 100px;
+				height: 100px;
+			}
+			td{
+				width: 120px;
+			}
+			td input{
+				width: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>确认订单</h1>
+		<div class="address">
+			<div >
+				姓名：<input id="truename" type="text" />
+			</div>
+			
+			<div>
+				手机：<input  id="orderPhone" type="text" />
+			</div>
+			<div class="dizhi">
+				地址：<div data-toggle="distpicker" id="myarea">
+					  <select></select>
+					  <select></select>
+					  <select></select>
+					</div>
+				详细地址：<input id="deAddress" type="text" />
+			</div>
+			
+		</div>
+		<div style="margin-bottom: 30px;"></div>
+		<div class="">
+			<table border="" cellspacing="" cellpadding="">
+				<tr>
+					<th>图片</th>
+					<th>名称</th>
+					<th>单价</th>
+					<th>尺码</th>
+					<th>颜色</th>
+					<th>数量</th>
+				</tr>
+				<tr class="list">
+					<td><img src="images/2.png"/></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><button class="min">-</button><input type="text" /><button class="plus">+</button></td>
+					
+				</tr>
+				
+			</table>
+			总价：<div class="total"> 总价格：888</div>
+			
+		</div>
+		<button class="sureBuy">确认订单</button>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="javascripts/jQueryDistpicker20160621/dist/distpicker.data.js" type="text/javascript" charset="utf-8"></script>
+	<script src="javascripts/jQueryDistpicker20160621/js/distpicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="javascripts/jQueryDistpicker20160621/js/main.js" type="text/javascript" charset="utf-8"></script>
+	<script src="javascripts/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="javascripts/dingdan.js" type="text/javascript" charset="utf-8"></script>
+</html>

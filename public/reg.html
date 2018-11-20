@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h1>注册</h1>
+		用户名：<input type="text" id="user" />
+		<br />
+		密码：<input type="text" id="password" />
+		<br />
+		手机：<input type="text" id="phone" />
+		<br />
+		真实姓名:<input type="text" id="tureName" />
+		<br />
+		<select id="mysel">
+			<option value="会员">会员</option>
+			<option value="非会员">非会员</option>
+		</select>
+		
+		<button id="regBtn">注册</button>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+			//注册接口文档 
+//			url:"/users/LoginAndReg"
+//			type:"post"
+//			data:{
+//				action:"reg",
+//				power: 权限        --> "会员"   "非会员"
+//				userName:用户名     
+//				turename:真实姓名
+//				password:密码
+//				phone:手机号      1开头 的11位数字
+//				
+// 			}
+//				成功	  success       err   格式错误  
+//						注册成功			
+//					  				err  用户已经被注册了
+//						
+//									err  注册失败 
+			
+			$("#regBtn").click(function(){
+				$.ajax({
+					type:"post",
+					url:"/users/LoginAndReg",
+					data:{
+						action:"reg",
+						power:$("#mysel").val(),
+						userName:$("#user").val(),
+						turename:$("#tureName").val(),
+						password:$("#password").val(),
+						phone:$("#phone").val()
+					},
+					async:true,
+					dataType:"json"
+				}).done(function(res){
+					console.log(res);
+					if(res.success){
+						alert("注册成功");
+						//清空输入框
+						$("#user").val("");
+						$("#tureName").val("");
+						$("#password").val("");
+						$("#phone").val("");
+					}else{
+						alert(res.err)
+					}		
+				})
+	
+			})
+			
+			
+			
+			
+			
+			
+			
+
+		})
+		
+		
+		
+		
+		
+	</script>
+	
+	
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*.code_wrap>*{
+				float: left;
+				
+			}*/
+		</style>
+	</head>
+	<body>
+		<h1>人人车登录</h1>	
+			用户名：<input type="text" id="user" />
+			<br />
+			密码	：<input type="text" id="password" />
+			
+			<div class="code_wrap"><input type="text"  id="myVeri" />
+				验证码：<span class="veri">
+						<canvas id="mycanvas" width="90" height="40">
+						</canvas>
+					</span>
+			</div>
+			<br />
+			<button id="login">登录</button>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="javascripts/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="javascripts/code.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+//			接口文档
+//			url："/users/adminVeri"
+//			type:"get",
+//			data:  action:"veri"
+//			成功：  data:  success:成功
+//					veri  验证码字符串	
+//	
+		function getCode(){
+			$.ajax({
+					type:"get",
+					url:"/users/adminVeri",
+					data:{action:"veri"},
+					async:true
+				}).done(function(res){
+				
+					var resdata=JSON.parse(res);
+						console.log(resdata);
+					
+//					$(".veri").html(resdata.veri);
+					
+					//画布加载验证码
+					clickChange(resdata.veri);
+				})	
+		}
+			getCode();
+			var mycanvas=document.getElementById("mycanvas");
+			 /*点击验证码更换*/
+			 mycanvas.onclick=function(e){
+			  e.preventDefault(); //阻止鼠标点击发生默认的行为
+			 	getCode();
+			 };
+	//校验验证码接口文档--忽略大小写
+//			url： /users/adminVeri
+//			type:"get",
+//			data:  action:"checkVeri" 
+//					veri:   验证码值
+//			成功：  data:  success           err
+//						          成功                    失败
+						
+			$("#login").click(function(){
+				
+				$.ajax({
+					url:" /users/adminVeri",
+					type:"get",
+					data:{action:"checkVeri",veri:$("#myVeri").val()},
+					dataType:"json"
+					
+				}).done(function(res){
+					if(res.success){
+						alert("验证码正确");
+						//登录接口 
+//						url: "/users/LoginAndReg"
+//						type:"post"
+//						data:{action:"login",
+//							 userName:用户名,
+//							 password:密码
+//						}
+//						成功:     success      err
+//									登录成功    账号密码错误
+						$.ajax({
+							type:"post",
+							url:"/users/LoginAndReg",
+							async:true,
+							data:{
+								action:"login",
+								userName:$("#user").val(),
+								password:$("#password").val()
+							},
+							dataType:"json"
+						}).done(function(res){
+							if(res.success){
+//								父窗口window.parent---window.parent.location.search
+								function getQueryParentString(name) {
+								    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+								    var r = window.parent.location.search.substr(1).match(reg);
+								    if (r != null) {
+								        return unescape(r[2]);
+								    }
+								    return null;
+								}
+								var pid=getQueryParentString("pid");
+								if(pid){
+									//父窗口有pid  跳到订单页
+									window.parent.location.href="dingdan.html?pid="+pid;
+								}else{
+									//普通登录跳主页
+									location.replace("renren.html");
+								}
+							}
+							if(res.err){
+								alert(res.err);
+							}
+						})
+						
+						
+						
+						
+					}
+					if(res.err){
+						alert("验证码错误，从新输入")
+						getCode();
+					}
+					$("#myVeri").val("");//清空输入框
+					
+				})
+				
+				
+			})
+							
+	})
+		
+		
+	</script>
+</html>
